@@ -14,7 +14,7 @@ login_url = "http://bbs.chinaunix.net/member.php?mod=logging&action=login&logins
 post_data = urllib.parse.urlencode({
     "username": "weisuen",
     "password": "aA123456"
-}).encode("utf-8")
+}).encode('utf-8')  # 使用urlencode编码处理后，再设置为utf-8编码
 req = urllib.request.Request(login_url, post_data)
 
 req.add_header("User-Agent",
@@ -27,9 +27,9 @@ opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cjar))
 urllib.request.install_opener(opener)
 
 file = opener.open(req)
-data = file.read()
+data = file.read()  # 登陆并爬取对应网页
 file = open("tmp/login.html", "wb")
-file.write(data)
+file.write(data)  # 将内容写入对应文件
 file.close()
 
 index_url = "http://bbs.chinaunix.net"
